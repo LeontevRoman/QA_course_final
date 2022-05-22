@@ -9,7 +9,7 @@ def pytest_addoption(parser):
                      help="Default language EN")
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="class")
 def browser(request):
     user_language = request.config.getoption("language")
 
@@ -18,6 +18,7 @@ def browser(request):
 
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
     browser = webdriver.Chrome(options=options)
 
     yield browser
