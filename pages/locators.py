@@ -1,8 +1,19 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators:
+class BasePageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+
+class GoToBasket:
+    GO_TO_BASKET = (By.XPATH, '//*[@id="default"]/header/div[1]/div/div[2]/span/a')
+    BASKET_PASS = (By.CLASS_NAME, "col-sm-6 h3")
+    BASKET_MESSAGE = (By.XPATH, '// *[ @ id = "content_inner"] / p')
+
+
+class MainPageLocators:
+    pass
+    # LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 
 class LoginPageLocators:
