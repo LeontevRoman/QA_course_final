@@ -9,11 +9,11 @@ def pytest_addoption(parser):
                      help="Default language EN")
 
 
-@pytest.fixture(scope="class")
+@pytest.fixture(scope="function")
 def browser(request):
     user_language = request.config.getoption("language")
 
-    print("\n[+] Start chrome browser for test.. Please wait..")
+    # print("\n[+] Start chrome browser for test.. Please wait..")
     time.sleep(2)
 
     options = Options()
@@ -22,5 +22,5 @@ def browser(request):
     browser = webdriver.Chrome(options=options)
 
     yield browser
-    print("\n[!] Quit browser. Test end!")
+    # print("\n[!] Quit browser. Test end!")
     browser.quit()

@@ -1,5 +1,9 @@
+import time
+
 from .base_page import BasePage
 from .locators import LoginPageLocators
+from .locators import RegisterField
+from selenium.webdriver.common.by import By
 
 
 class LoginPage(BasePage):
@@ -22,3 +26,13 @@ class LoginPage(BasePage):
         # реализуйте проверку, что есть форма регистрации на странице
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), \
                                     'Sorry.. Register form is missing'
+
+    def register_new_user(self, email, password):
+        login_field = self.browser.find_element(*RegisterField.LOGIN_FIELD)
+        login_field.send_keys(email)
+        password_field_1 = self.browser.find_element(*RegisterField.PASSWORD_FIELD)
+        password_field_1.send_keys(password)
+        password_field_2 = self.browser.find_element(*RegisterField.DOUBLE_PASSWORD_FIELD)
+        password_field_2.send_keys(password)
+        button_register = self.browser.find_element(*RegisterField.BUTTON_REGISTER)
+        button_register.click()
